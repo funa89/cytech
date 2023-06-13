@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+ //検索結果を表示する
+ Route::get('/serch','App\Http\Controllers\ProductsController@serch');
+
+ //ユーザー一覧と検索画面
+ Route::get('/product','App\Http\Controllers\ProductsController@index');
+
+// Route::get('/', function () {
+    //return view('index');
+//});
